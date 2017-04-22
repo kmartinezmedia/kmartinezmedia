@@ -1,0 +1,38 @@
+@import 'variables';
+
+body { 
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  font-family: $fontRegular;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  overflow: auto;
+  text-rendering: optimizeLegibility;
+}
+
+.cmx-section {
+  position: relative;
+
+  &:first-child {
+    padding-top: 150px;
+  }
+}
+
+.cmx-input label,
+.cmx-input .error-text {
+  background-color: white;
+}
+
+@include respond-to(handhelds) {
+  .cmx-button {
+    padding: 10px 16px;
+  }
+}
+
+.cmx-heading {
+  b {
+    color: $darkTeal;
+    font-weight: normal;
+  }
+}

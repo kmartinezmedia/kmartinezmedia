@@ -1,0 +1,76 @@
+//fonts
+$europa-light: 'europa-light', sans-serif;
+$europa-regular: 'europa-regular', sans-serif;
+$europa-bold: 'europa-bold', sans-serif;
+$fontRegular: $europa-regular;
+$fontBold: $europa-bold;
+$fontLight: $europa-light;
+$serifRegular: 'expo-serif-pro', serif;
+
+//sizes
+$paddingFull: 30px;
+$paddingHalf: $paddingFull / 2;
+$mobile: 414;
+$tablet: 850;
+$break-small: 550px;
+$break-large: 1024px;
+
+//colors
+$default-color: black;
+$placeholderColor: rgba(0,0,0,0.5);
+$lightBlack: rgba(0,0,0,0.3);
+$lightestBlack: rgba(0,0,0,0.1);
+$teal: #4FC0B2;
+$darkTeal: #22A695;
+$red: #F26A47;
+$yellow: #FFCF07;
+$backgroundColor: #FAFBFD;
+$blue: #12A3DC;
+$lime: #BAD53A;
+
+@mixin responsive($max, $min: 0) {
+  @media only screen and (min-width: ($min * 1px)) and (max-width: ($max * 1px)) {@content}
+}
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == tablets {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+@mixin iphone_five {
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px) { @content; }
+}
+
+@mixin iphone_six {
+  @media only screen and (min-device-width : 375px) and (max-device-width : 667px) { @content; }
+}
+
+@mixin iphone_six_plus {
+  @media only screen and (min-device-width : 414px) and (max-device-width : 736px) { @content; }
+}
+
+%vCenter {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+%hCenter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%vhCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
