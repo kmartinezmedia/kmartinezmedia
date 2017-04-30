@@ -20,7 +20,7 @@ class WorkDetail extends React.Component {
 	componentDidMount = () => {
     const id = this.props.match.params.id;
     axios.get(`${process.env.API_URL}/work/${id}`).then((resp)=> {
-      this.setState({work: resp.data}, ()=> console.log(this.state))
+      this.setState({work: resp.data});
     })
 	}
 
