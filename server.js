@@ -11,9 +11,6 @@ if (process.env.NODE_ENV == "development") {
 }
 
 if (process.env.NODE_ENV == "staging") {
-  // password protect staging server
-  // uncomment to password protect
-  // app.use(auth)
   app.set('port', process.env.STAGING_PORT)
 }
 
