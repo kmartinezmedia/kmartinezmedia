@@ -1,5 +1,10 @@
 # example
 
+## Production ports used for kmartinezmedia.com
+5003 - kmartinezmedia.com
+5002 - api.kmartinezmedia.com
+5001 - PEI annual report
+
 ## Local setup
 
 Find and replace all `example.com` instances in  `src/index.html` and this readme file
