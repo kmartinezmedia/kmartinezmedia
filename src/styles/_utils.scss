@@ -1,0 +1,50 @@
+$utilsList: top right bottom left;
+
+@each $direction in $utilsList {
+  .pad-#{$direction} {
+    padding-#{$direction}: $paddingFull;
+  }
+  .gap-#{$direction} {
+    margin-#{$direction}: $paddingFull;
+  }
+  .pad-#{$direction}-half {
+    padding-#{$direction}: $paddingHalf;
+  }
+  .gap-#{$direction}-half {
+    margin-#{$direction}: $paddingHalf;
+  }
+  .pad-#{$direction}-double {
+    padding-#{$direction}: $paddingFull * 2;
+  }
+  .gap-#{$direction}-double {
+    margin-#{$direction}: $paddingFull * 2;
+  }
+  .no-gap-#{$direction} {
+    margin-#{$direction}: 0 !important;
+  }
+}
+
+.padded {
+  padding: $paddingFull;
+}
+
+.padded-half {
+  padding: $paddingHalf;
+}
+
+.padded-double {
+  padding: $paddingFull * 2;
+}
+
+$alignItems: flex-start flex-end center stretch;
+
+@each $align in $alignItems {
+  .align-#{$align} {
+    align-items: $align;
+  }
+}
+
+.inline {
+  display: inline-block;
+  vertical-align: center;
+}

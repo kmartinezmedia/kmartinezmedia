@@ -1,0 +1,36 @@
+@import '~styles/variables';
+
+.browser-container {
+  height: 74%;
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.15);
+  border-radius: 5px;
+  overflow: hidden;
+
+  .address-bar {
+    height: 10%;
+    width: 100%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+
+  .screen-insert {
+    height: 90%;
+    width: 101%;
+    background-position: 0 10%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    // overflow-y: auto;
+  }
+}

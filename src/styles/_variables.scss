@@ -1,76 +1,70 @@
-//fonts
-$europa-light: 'europa-light', sans-serif;
-$europa-regular: 'europa-regular', sans-serif;
-$europa-bold: 'europa-bold', sans-serif;
-$fontRegular: $europa-regular;
-$fontBold: $europa-bold;
-$fontLight: $europa-light;
-$serifRegular: 'expo-serif-pro', serif;
+//type variables
+$base-font-size: 16;
+$base-line-height: 24;
+$nav-height: 60px;
+$headerHeight: 70px;
+$stageHeight: calc(100% -  #{$headerHeight});
+$stageWidth: 70%;
+$rightWidth: 350px;
+// font-family: 'Open Sans', sans-serif;
+$fontLight: 'HelveticaLTStd-Light';
+$fontReg: 'HelveticaNeueLTStd-Roman';
+$fontMedium: 'HelveticaNeueLTStd-Md';
+$fontBold: 'HelveticaNeueLTStd-Bd';
+// $serif: "adobe-garamond-pro";
+$serif: 'Source Code Pro';
+$europaLight: "Europa-Light";
+$europaRegular: "Europa-Regular";
+$europaBold: "Europa-Bold";
+$contextualSidebarWidth: 280px;
 
-//sizes
+$border: 1px solid #e8e8e8;
+$borderRadius: 4px;
+$boxShadow: 0 4px 6px 0px rgba(0,0,0,0.1);
+
+$primary: #6B7B87;
+$dark: #212121;
+$medium: rgba(0,0,0,0.6);
+$light: #868686;
+$stage: #0D071E;
+$teal: #4fc1b2;
+$darkTeal: #21a696;
+$blue: #0aa3da;
+$brightBlue: #3fabf5;
+$brightGreen: #50e3c2;
+$brightPurple: #B359F3;
+
+$paddingDouble: 60px;
 $paddingFull: 30px;
-$paddingHalf: $paddingFull / 2;
-$mobile: 414;
-$tablet: 850;
-$break-small: 550px;
-$break-large: 1024px;
+$paddingHalf: 15px;
+$paddingThird: 10px;
+$paddingFourth: 7.5px;
+$buttonPadding: 8px 28px 8px;
 
-//colors
-$default-color: black;
-$placeholderColor: rgba(0,0,0,0.5);
-$lightBlack: rgba(0,0,0,0.3);
-$lightestBlack: rgba(0,0,0,0.1);
-$teal: #4FC0B2;
-$darkTeal: #22A695;
-$red: #F26A47;
-$yellow: #FFCF07;
-$backgroundColor: #FAFBFD;
-$blue: #12A3DC;
-$lime: #BAD53A;
+$fontSize: #{$base-font-size}px;
+$fontColor: black;
 
+@mixin cardShadow($color: $primary) {
+  box-shadow: inset 0px 3px 0px 0px $color;
+}
+
+// responsive mixin
 @mixin responsive($max, $min: 0) {
   @media only screen and (min-width: ($min * 1px)) and (max-width: ($max * 1px)) {@content}
 }
 
-@mixin respond-to($media) {
-  @if $media == handhelds {
-    @media only screen and (max-width: $break-small) { @content; }
-  }
-  @else if $media == tablets {
-    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
-  }
-  @else if $media == wide-screens {
-    @media only screen and (min-width: $break-large) { @content; }
-  }
-}
+$headings: (
+  h1: 48,
+  h2: 32,
+  h3: 28,
+  h4: 24,
+  h5: 16,
+  h6: 16
+);
 
-@mixin iphone_five {
-  @media only screen and (min-device-width : 320px) and (max-device-width : 568px) { @content; }
-}
-
-@mixin iphone_six {
-  @media only screen and (min-device-width : 375px) and (max-device-width : 667px) { @content; }
-}
-
-@mixin iphone_six_plus {
-  @media only screen and (min-device-width : 414px) and (max-device-width : 736px) { @content; }
-}
-
-%vCenter {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-%hCenter {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-%vhCenter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+%flexContainer {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: space-between;
 }

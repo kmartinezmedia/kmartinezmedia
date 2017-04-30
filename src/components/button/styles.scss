@@ -1,0 +1,18 @@
+@import '~styles/variables';
+
+.button {
+  padding: $buttonPadding;
+  font-family: $europaRegular;
+  background-color: $brightBlue;
+  color: white;
+  border-radius: 100px;
+  border: none;
+  outline: none;
+  margin-top: $paddingFull;
+  transition: all 0.25s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($teal, 10%);
+  }
+}

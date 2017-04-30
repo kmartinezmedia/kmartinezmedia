@@ -1,0 +1,16 @@
+@import '~styles/variables';
+
+.expanded-container {
+	width: 100%;
+  z-index: -1;
+	position: absolute;
+
+	.expanded-image {
+		backface-visibility: hidden;
+		transform: translate3d(0,0,0);
+		background-size: 100%;
+		opacity: 0;
+		position: absolute;
+		transform-origin: 0 0;
+	}
+}

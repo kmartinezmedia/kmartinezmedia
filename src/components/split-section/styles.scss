@@ -1,0 +1,21 @@
+@import '~styles/variables';
+
+.split-section {
+  margin-bottom: $paddingFull;
+  align-items: flex-start;
+  .left {
+    display: inline-block;
+    width: 30%;
+    @include responsive(788) {
+      width: 100%;
+      margin-bottom: $paddingFull;
+    }
+  }
+  .right {
+    display: inline-block;
+    width: 70%;
+    @include responsive(788) {
+      width: 100%;
+    }
+  }
+}

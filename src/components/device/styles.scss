@@ -1,0 +1,71 @@
+@import '~styles/variables';
+
+.device-container {
+  // width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  overflow: hidden;
+  position: relative;
+  text-align: inherit;
+}
+
+  .device {
+    position: relative;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+    }
+
+    .screen, .carousel-container {
+      background-position: left top;
+      background-repeat: no-repeat;
+      background-size: cover;
+      overflow: hidden;
+      position: absolute;
+      
+    }
+
+    &.tablet {
+      width: 90%;
+
+      .screen, .carousel-container {
+        height: 84.5%;
+        width: 81.1%;
+        top: 7.5%;
+        left: 8.5%;
+      }
+    }
+
+    &.mobile {
+      width: 40%;
+      .screen, .carousel-container {
+        height: 72.4%;
+        width: 85.8%;
+        top: 12.5%;
+        left: 7.3%;
+      }
+    }
+
+    &.laptop {
+      width: 90%;
+      .screen, .carousel-container {
+        height: 80%;
+        width: 74.5%;
+        top: 7%;
+        left: 12.7%;
+      }
+    }
+
+     &.video {
+      width: 90%;
+      .screen, .carousel-container {
+        background-position: center;
+        height: 85.9%;
+        width: 94%;
+        top: 1.6%;
+        left: 2%;
+      }
+    }
+  }

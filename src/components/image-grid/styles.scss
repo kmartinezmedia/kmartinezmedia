@@ -1,0 +1,57 @@
+@import '~styles/variables';
+
+.image-grid {
+  padding: .5vw;
+  font-size: 0;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  -ms-flex-direction: column;
+  -webkit-flex-flow: row wrap; 
+  flex-flow: row wrap; 
+  display: -webkit-box;
+  display: flex;
+
+  .image {
+    -webkit-box-flex: auto;
+    -ms-flex: auto;
+    flex: auto; 
+    width: 200px; 
+    margin: .5vw; 
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      .fullscreen {
+        opacity: 1;
+      }
+    }
+  }
+
+  .fullscreen {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: rgb(255,255,255);
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.25s;
+
+    .icon {
+      font-size: 16px;
+      color: white;
+      transform: translate3d(-50%, -50%, 0);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: 0;
+    }
+  }
+
+  img {
+    width: 100%; 
+    height: auto; 
+  }
+}

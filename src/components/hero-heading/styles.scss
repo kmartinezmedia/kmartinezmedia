@@ -1,0 +1,26 @@
+@import '~styles/variables';
+
+.hero-heading {
+  width: 50%;
+  display: inline-block;
+  vertical-align: middle;
+
+  @include responsive(788) {
+    width: 100%;
+  }
+}
+
+@keyframes krmFadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.krmFadeDown {
+  -webkit-animation-name: krmFadeDown;
+  animation-name: krmFadeDown
+}

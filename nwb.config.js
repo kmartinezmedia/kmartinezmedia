@@ -21,8 +21,7 @@ module.exports = {
     },
     define: {
       'process.env':{
-        'GOOGLE_KEY_STAGING': JSON.stringify(process.env.GOOGLE_KEY_STAGING),
-        'GOOGLE_KEY_PRODUCTION': JSON.stringify(process.env.GOOGLE_KEY_PRODUCTION)
+        'API_URL': process.env.NODE_ENV == "production" ? JSON.stringify(process.env.API) : JSON.stringify(process.env.API_LOCAL)
       }
     },
     extra: {
@@ -33,5 +32,9 @@ module.exports = {
     moment: {
       locales: ['en']
     },
+    uglify: {
+      mangle: false,
+      beautify: true
+    }
   }
 }
