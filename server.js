@@ -3,7 +3,6 @@ const objectAssign = require('object-assign');
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
-const auth = require('./config/staging-auth');
 const app = express();
 
 if (process.env.NODE_ENV == "development") {
@@ -17,7 +16,6 @@ if (process.env.NODE_ENV == "staging") {
 if (process.env.NODE_ENV == "production") {
   app.set('port', process.env.PRODUCTION_PORT)
 }
-
 
 try {
   fs.statSync('dist')

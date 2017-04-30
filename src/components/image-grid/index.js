@@ -1,4 +1,5 @@
 import React from 'react';
+import {Icon} from 'cmx-components';
 import './styles.scss';
 
 class ImageGrid extends React.Component {
@@ -24,7 +25,7 @@ class ImageGrid extends React.Component {
             <div className="image" onClick={() => this.props.goFullScreen(index)} key={index}>
               <img src={image.url} alt=""/>
               <div className="fullscreen">
-                <i className="icon icon-resize-full"></i>
+                <Icon name="zoom" medium  white/>
               </div>
             </div>
           )
