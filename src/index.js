@@ -24,18 +24,6 @@ import Traffic from 'pages/error/traffic.js';
 import NavBar from 'components/nav-bar';
 import 'styles/base.scss';
 
-class AppContainer extends Component {
-  render() {
-    return (
-      <div className="app-container">
-        <div className="stage">
-          { this.props.children }
-        </div>
-      </div>
-    );
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   if (navigator.userAgent.match(/(iPod|iPhone|iPad)/i)) {
     document.querySelector('html').classList.add('ios');

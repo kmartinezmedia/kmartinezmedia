@@ -95,7 +95,7 @@
     <% if (process.env.NODE_ENV == "production") { %>
       <script>
         window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-        ga('create', 'UA-97880477-1', 'auto');
+        ga('create', process.env.GOOGLE_ANALYTICS, 'auto');
         ga('send', 'pageview');
       </script>
       <script async defer src='https://www.google-analytics.com/analytics.js'></script>

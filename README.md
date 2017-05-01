@@ -1,13 +1,18 @@
-# example
+# kmartinezmedia.com
 
 ## Production ports used for kmartinezmedia.com
 5003 - kmartinezmedia.com
 5002 - api.kmartinezmedia.com
-5001 - PEI annual report
+5001 - pei-annual-report
+5000 - freelance-branded-palette
+4999 - pei-original-penguin
+4998 - freelance-brown-wedding
+4997 - celmatix-style-guide
+4996 - celmatix-polaris-platform
 
 ## Local setup
 
-Find and replace all `example.com` instances in  `src/index.html` and this readme file
+Find and replace all `kmartinezmedia.com` instances in  `src/index.html` and this readme file
 
 Generate app icons/images here `https://realfavicongenerator.net/`
 
@@ -19,20 +24,44 @@ Run `npm install && npm run setup` in root
 
 open `.env` file in sublime & edit with correct definitions
 
+## Digital Ocean DNS setup
 
-## DigitalDomain setup directory
+`https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean`
 
-`ssh username@digitaldomainIP` and `sudo mkdir -p /var/www/example.com/html` to create new site directory
+Point DNS to following servers
 
-`cd /var/www/example.com/html` and `git clone https://github.com/kmartinezmedia/example.git .` to clone repo into that html directory
+`NS1.DIGITALOCEAN.COM`
+`NS2.DIGITALOCEAN.COM`
+`NS3.DIGITALOCEAN.COM`
 
-`touch .env` to create environment file
+Check to make sure worked by typing `whois kmartinezmedia.com` in console
 
-Copy and paste environment variables from local machine into this file
+Add new domain in networking tab of digital ocean
 
-If staging project run `NODE_ENV=staging pm2 start server.js --name example.com-staging` and `npm run staging`
+Add `@` hostname to A entry
 
-If production run `NODE_ENV=production pm2 start server.js --name example.com` and `npm run production`
+Add  `dev` hostname to A entry (this will be staging)
+
+Add `www` hostname to CNAME entry
+
+
+## Digital Ocean setup directory
+
+`ssh username@digitalOceanIP` and `sudo mkdir -p /var/www/kmartinezmedia.com/html` to create new site directory
+
+`cd /var/www/kmartinezmedia.com/html` and `git clone https://github.com/kmartinezmedia/kmartinezmedia.git .` to clone repo into that html directory
+
+`touch .env`
+
+Type i to enter insert mode
+
+Copy and paste environment variables
+
+`esc` and `:wq` to write the current file and exit
+
+`NODE_ENV=staging pm2 start server.js --name kmartinezmedia.com-staging` and `npm run staging` for staging
+
+`NODE_ENV=production pm2 start server.js --name kmartinezmedia.com` and `npm run production` for production
 
 
 ## SSL Setup
@@ -44,74 +73,32 @@ Startup letsencrypt plugin with `sudo letsencrypt certonly --standalone`
 Fill in the info and jot down expiration date to renew
 
 
-## DigitalDomain nginx setup
+## Digital Ocean NGINX setup
 
 Detailed directions can be found `https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-16-04`
 
-Open new terminal window and ssh into VM again
+`sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/kmartinezmedia.com`
 
-Run `sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/example.com`
+`sudo nano /etc/nginx/sites-available/kmartinezmedia.com`
 
-To copy default nginx config to new directory
+`sudo ln -s /etc/nginx/sites-available/kmartinezmedia.com /etc/nginx/sites-enabled/`
 
-`sudo nano /etc/nginx/sites-available/example.com`
+`sudo nginx -t` checks errors
 
-`
-# HTTP - redirect all requests to HTTPS:
-server {
-  listen 80;
-  listen [::]:80 default_server ipv6only=on;
-  return 301 https://$host$request_uri;
-}
-
-# HTTPS - proxy requests on to local Node.js app:
-server {
-  listen 443;
-  server_name example.com;
-
-  ssl on;
-  # Use certificate and key provided by Let's Encrypt:
-  ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
-  ssl_session_timeout 5m;
-  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-  ssl_prefer_server_ciphers on;
-  ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
-
-  # Pass requests for / to localhost:PORT_NUMBER:
-  location / {
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-NginX-Proxy true;
-    proxy_pass http://localhost:PORT_NUMBER/;
-    proxy_ssl_session_reuse off;
-    proxy_set_header Host $http_host;
-    proxy_cache_bypass $http_upgrade;
-    proxy_redirect off;
-  }
-}
-`
-
-Change example.com and PORT_NUMBER to port designated in .env file
-
-Create link for nginx to read this file with `sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/`
-
-Check to make sure no errors in nginx files with `sudo nginx -t`
-
-If no errors restart nginx with `sudo systemctl restart nginx`
+`sudo systemctl restart nginx`
 
 
 ## Installation
 
 Clone repo
 
-Run `npm install && npm run setup` in root
+`npm install && npm run setup`
 
 This will install all dependenceis and create `.env` in root directory to store environment variables
 
 Open `.env` file in text editor
 
-In new terminal window `ssh username@digitaldomainIP` then `cd /var/www/example.com/html`
+In new terminal window `ssh username@digitalOceanIP` then `cd /var/www/kmartinezmedia.com/html`
 
 Run `vim .env` and copy + paste contents to your local `.env` file
 
@@ -137,20 +124,20 @@ Now when running `npm start` the server file will point to the `src` folder as e
 
 ## Deploying to the staging server
 
-`ssh username@digitaldomainIP` then `cd /var/www/example.com/html` and `git pull`
+`ssh username@digitalOceanIP` then `cd /var/www/kmartinezmedia.com/html` and `git pull`
 
 Then run `npm run staging`
 
-`npm run staging` is shortcut for running `npm install && npm update cmx-components && npm run clean && npm run build && NODE_ENV=staging pm2 restart example.com-staging`
+`npm run staging` is shortcut for running `npm install && npm update cmx-components && npm run clean && npm run build && NODE_ENV=staging pm2 restart kmartinezmedia.com-staging`
 
 
 ## Production Server
 
-`ssh username@digitaldomainIP` then `cd /var/www/example.com/html` and `git pull`
+`ssh username@digitalOceanIP` then `cd /var/www/kmartinezmedia.com/html` and `git pull`
 
 Then run `npm run production`
 
-`npm run production` is shortcut for running `npm install && npm update cmx-components && npm run clean && npm run build && NODE_ENV=production pm2 restart example.com`
+`npm run production` is shortcut for running `npm install && npm update cmx-components && npm run clean && npm run build && NODE_ENV=production pm2 restart kmartinezmedia.com`
 
 
 ## Adding new environment variables
@@ -159,7 +146,7 @@ When adding environment variables don't forget to add entry in `config/.sample-e
 
 Will also need to ssh into staging and production to update those .env files
 
-`ssh username@digitaldomainIP` then `cd /var/www/example.com/html`
+`ssh username@digitalOceanIP` then `cd /var/www/kmartinezmedia.com/html`
 
 VIM into each directories .env file to add new entries
 
@@ -196,14 +183,14 @@ When wanting to test locally before deploying to staging/production you can use 
 
 On the staging/production server we use PM2 to manage node processes
 
-The deployment `npm run staging` and `npm run production` script contains a command to restart a pm2 process with the name `example.com-staging` or `example.com`
+The deployment `npm run staging` and `npm run production` script contains a command to restart a pm2 process with the name `kmartinezmedia.com-staging` or `kmartinezmedia.com`
 
 The only difference between deployment script and `npm run staging:local` or `npm run production:local` is that the local variations replace pm2 to use plain node so you don't have to download pm2 to test
 
 If you wish to use pm2 instead to replicate exact environment you can install PM2 globally on your machine using `npm install pm2@latest -g`
 
-After it is installed, go to the root directory of example repo and create the staging or production pm2 process using `pm2 start server.js --name example.com-staging` or `pm2 start server.js --name example.com`
+After it is installed, go to the root directory of kmartinezmedia repo and create the staging or production pm2 process using `pm2 start server.js --name kmartinezmedia.com-staging` or `pm2 start server.js --name kmartinezmedia.com`
 
 You can now run `npm run staging` to `http://localhost:5004/` and `npm run production` to `http://localhost:5003/` successfully
 
-This process will continuouslly run in the background, but you can stop the PM2 process using `pm2 stop example.com-staging` and `pm2 stop example.com` when done testing
+This process will continuouslly run in the background, but you can stop the PM2 process using `pm2 stop kmartinezmedia.com-staging` and `pm2 stop kmartinezmedia.com` when done testing
