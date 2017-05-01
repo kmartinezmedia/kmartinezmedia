@@ -24,6 +24,8 @@ Run `npm install && npm run setup` in root
 
 open `.env` file in sublime & edit with correct definitions
 
+When running 'npm start' make sure to load api.kmartinezmedia.com in another terminal window
+
 ## Digital Ocean DNS setup
 
 `https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean`
