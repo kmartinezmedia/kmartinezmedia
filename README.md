@@ -9,6 +9,7 @@
 4998 - freelance-brown-wedding
 4997 - celmatix-style-guide
 4996 - celmatix-polaris-platform
+4995 - newyou
 
 ## Local setup
 
@@ -161,7 +162,7 @@ When finished press `esc` to exit insert mode & type `:wq` to write the current 
 
 We use `server.js` file to define our endpoints
 
-To debug when adding new endpoint you can run `npm run api` which will create build of src files and use nodemon to run `server.js` file. 
+To debug when adding new endpoint you can run `npm run api` which will create build of src files and use nodemon to run `server.js` file.
 
 Nodemon is helpful because it updates the browser when changes are made to `server.js` file instead of having to restart node process on each change in order to see updates reflected in browser
 
@@ -169,7 +170,7 @@ Nodemon is helpful because it updates the browser when changes are made to `serv
 ## Airtable
 
 We use airtable to store some content so that the marketing team can easily make updates
-  
+
 To access their api we store our custom airtable url and key in two environment variables `AIRTABLE_KEY` AND `AIRTABLE_URL` defined in our .env file
 
 We use axios npm module to make http (GET or POST) requests on client side to our express server api
