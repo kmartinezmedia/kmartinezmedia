@@ -12,9 +12,15 @@ class Home extends React.Component {
     super(props);
     this.state = {works: [], carouselImages: []};
   }
-  
-  componentDidMount() { 
-    axios.get(`${process.env.API_URL}/work`).then((resp)=> {
+
+  componentDidMount() {
+    axios.get(`${process.env.API_URL}/work`, {
+      params: {
+        sort: [
+          {field:'id', direction: 'asc'}
+        ]
+      }
+    }).then((resp)=> {
       this.setState({works: resp.data})
       resp.data.map( (item, index) => {
         const image = {

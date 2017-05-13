@@ -21,7 +21,7 @@ module.exports = {
     },
     define: {
       'process.env':{
-        'API_URL': process.env.NODE_ENV == "production" ? JSON.stringify(process.env.API) : JSON.stringify(process.env.API_LOCAL),
+        'API_URL': process.env.NODE_ENV == "production" ? JSON.stringify(process.env.API_URL_PRODUCTION) : JSON.stringify(process.env.API_URL_DEVELOPMENT),
         'GOOGLE_ANALYTICS': JSON.stringify(process.env.GOOGLE_ANALYTICS)
       }
     },
