@@ -12,7 +12,7 @@ class Contact extends React.Component {
 
   constructor(props) {
     super(props);
-  
+
     this.state = {
       sent: false
     };
@@ -22,17 +22,16 @@ class Contact extends React.Component {
     const {email, name, message} = this;
     if ( email.value != '' || name.value != '' || message.value != '') {
       const data = {
-        to: this.email.value,
-        subject: `Portfolio inquiry from ${this.name.value}`,
-        text: this.message.value
+        date: Date.now(),
+        email: email.value,
+        name: name.value,
+        message: message.value
       };
-      const params = Utils.toQueryString(data);
-      console.log(params)
-      axios.post(`${process.env.API_URL}/contact?${params}`).then((resp)=> {
-        console.log(resp);
-        if (resp.data == 'sent') {
-          this.setState({sent: true})
-        }
+      axios.post(`${process.env.API_URL}/contact`, data).then((resp)=> {
+        console.log(resp)
+        this.setState({sent: true})
+      }).catch((error) => {
+        console.log(error);
       })
     }
   }
@@ -40,20 +39,33 @@ class Contact extends React.Component {
   render() {
     const {sent} = this.state;
     const {route} = this.props;
-    
+
     let form;
     let success;
-    
+
     if (!sent) {
       form = (
         <form method="get" action="">
           <div className="row">
             <label htmlFor="name">Name</label>
-            <input type="text" className="text" id="name" name="name" required ref={(input) => this.name = input}/>
+            <input
+              type="text"
+              className="text"
+              id="name"
+              name="name"
+              required
+              ref={(input) => this.name = input}/>
           </div>
           <div className="row">
             <label htmlFor="email">Email</label>
-            <input type="text" className="text" id="customer_mail" name="email" type="email" required ref={(input) => this.email = input}/>
+            <input
+              type="text"
+              className="text"
+              id="customer_mail"
+              name="email"
+              type="email"
+              required
+              ref={(input) => this.email = input}/>
           </div>
           <div className="row">
             <label htmlFor="message">Message</label>

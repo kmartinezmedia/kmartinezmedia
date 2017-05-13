@@ -2,7 +2,6 @@ require('dotenv').config();
 const objectAssign = require('object-assign');
 const express = require('express');
 const bodyParser = require('body-parser');
-const nodemailer = require("nodemailer");
 const app = express();
 
 if (process.env.NODE_ENV == "development") {
@@ -41,33 +40,6 @@ app.use(function(req, res, next) {
   next()
 })
 
-// create reusable transporter object using the default SMTP transport
-let transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-      user: 'kmartinezmedia@gmail.com',
-      pass: process.env.GMAIL_PASSWORD
-  }
-})
-
-app.post('/contact', function(req,res) {
-  let mailOptions = {
-    to : req.query.to,
-    subject : req.query.subject,
-    text : req.query.text
-  }
-  console.log(mailOptions);
-  transporter.sendMail(mailOptions, function(error, response){
-    if(error){
-      console.log(error);
-      res.end("error");
-    } else {
-      res.send("sent");
-      transporter.close();
-    }
-  });
-})
-
 // get work record from airtable with an id
 app.get('/work/:id', function(req, res) {
   const id = req.params.id;
@@ -93,7 +65,6 @@ app.get('/:table', function(req, res) {
 
   let filter;
   if (req.query.hasOwnProperty('filterByFormula')) {
-    console.log(req.query.filterByFormula)
     filter = {
       filterByFormula: req.query.filterByFormula
     }
@@ -101,10 +72,11 @@ app.get('/:table', function(req, res) {
 
   const params = objectAssign({}, sortQuery, filter);
 
-  // let params;
-
   airtableBase(table).select(params).firstPage(function(err, records) {
-      if (err) { console.error(err); return; }
+      if (err) {
+        console.error(err);
+        return;
+      }
       res.send(records)
   });
 })

@@ -9,6 +9,8 @@
     "pm2": "NODE_ENV=production pm2 start server.js --name kmartinezmedia.com | NODE_ENV=production pm2 start api.js --name kmartinezmedia.com/api ",
     "production": "npm update cmx-components && npm update martinez-components && NODE_ENV=production npm run build && NODE_ENV=production pm2 restart kmartinezmedia.com | pm2 restart kmartinezmedia.com/api",
     "start": "NODE_ENV=development nodemon api.js | nwb serve-react-app --port 8000",
+    "api": "NODE_ENV=development nodemon api.js",
+    "serve": "nwb serve-react-app --port 8000",
     "setup": "node config/setup.js",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
