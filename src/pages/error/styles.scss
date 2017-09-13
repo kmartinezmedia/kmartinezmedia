@@ -15,11 +15,27 @@
     overflow: hidden; 
 
     .svg-content {
+      background-color: #105776;
       display: inline-block;
       position: absolute;
       top: 0;
       left: 0;
     }
+  }
+
+  h1 {
+    font-size: 46px;
+    line-height: 64.72px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 29.12px;
+  }
+
+  button.button {
+    background-color: #105776;
+    padding: 12px 26px;
   }
 
   .logo {

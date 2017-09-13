@@ -3,12 +3,14 @@ import {Link} from 'react-router-dom';
 import Button from 'components/button';
 import InnerStage from 'components/inner-stage';
 import logoImageWhite from 'img/logo-white.svg';
+import {TimelineMax} from 'gsap';
 import _ from 'lodash';
 import './styles.scss';
 
 class Maintenance extends React.Component {
 
 	componentDidMount = () => {
+    console.log(TimelineMax)
 		const {fog1, fog2, arms, head, lampLight} = this.refs;
 		var config = {repeat: -1, yoyo: true, paused: true};
 		// var config = {};
